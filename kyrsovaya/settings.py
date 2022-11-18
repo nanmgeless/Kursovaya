@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'myapp1',
     'rest_framework',
     'api',
+    'drf_spectacular',
 
 ]
 # Application definition
@@ -125,3 +126,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Statistics API',
+    'DESCRIPTION': 'API that outputs the number of characters in the request',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}

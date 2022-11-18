@@ -1,0 +1,49 @@
+openapi: 3.0.3
+info:
+  title: Statistics API
+  version: 1.0.0
+  description: API that outputs the number of characters in the request
+paths:
+  /api/{s}:
+    get:
+      operationId: api_retrieve
+      parameters:
+      - in: path
+        name: s
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Statistics'
+          description: ''
+components:
+  schemas:
+    Statistics:
+      type: object
+      properties:
+        symbol_count:
+          type: object
+          additionalProperties: {}
+        str_len:
+          type: integer
+      required:
+      - str_len
+      - symbol_count
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
